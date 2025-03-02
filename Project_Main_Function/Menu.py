@@ -1,7 +1,8 @@
+import Game_Story
 import os
 import textwrap
 from Ultilities import slow_print
-from Storyline import load_storyline, progress_story
+
 from Player import Mage, Warrior, Shadow, Archer
 
 def clear_screen():
@@ -61,9 +62,10 @@ def choose_class():
 def start_storyline():
     """Loads the storyline and starts the game."""
     clear_screen()
-    storyline = load_storyline()
+    storyline = Game_Story.load_story()
     player = choose_class()
-    progress_story(player, "menu_link", storyline)
+    Game_Story.start_story(player)
+
 
 def execute_option(choice):
     """Executes the selected menu option."""
