@@ -38,19 +38,19 @@ def choose_class():
     clear_screen()
     slow_print("Choose your class:", delay=0.05)
     classes = {
-        "1": Mage,
-        "2": Warrior,
-        "3": Shadow,
-        "4": Archer
+        "1": ("Mage", Mage),
+        "2": ("Warrior", Warrior),
+        "3": ("Shadow", Shadow),
+        "4": ("Archer", Archer)
     }
-    for key, cls in zip(classes.keys(), ["Mage", "Warrior", "Shadow", "Archer"]):
-        slow_print(f"{key}. {cls.__name__}", delay=0.05)
+    for key, (cls_name, cls) in classes.items():
+        slow_print(f"{key}. {cls_name}", delay=0.05)
     
     while True:
         choice = input("Enter the number of your class: ").strip()
         if choice in classes:
             name = input("Enter your character's name: ").strip()
-            return classes[choice](name)
+            return classes[choice][1](name)
         slow_print("Invalid choice. Please select a valid class.", delay=0.05)
 
 def start_storyline():
