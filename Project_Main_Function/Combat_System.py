@@ -101,13 +101,3 @@ def calculate_damage(player, demon):
     elif isinstance(player, Archer):
         return base_damage + weapon_damage + (player.crit_chance // 2)
     return base_damage + weapon_damage
-
-# Example combat test
-if __name__ == "__main__":
-    player = Mage("Gandalf")  # Change class to test different combat styles
-    player.equip_weapon({"name": "Apprentice's Staff", "damage": 10})  # Example equipped weapon
-    demon = spawn_demon("tier_1")
-    if demon:
-        combat(player, demon)
-    else:
-        print("No demons found in this tier.")
