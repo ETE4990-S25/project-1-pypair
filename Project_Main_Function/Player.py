@@ -10,6 +10,15 @@ class Player:
         self.dexterity = dexterity
         self.intelligence = intelligence
 
+    def equip_weapon(self, weapon):
+        if self.can_equip(weapon):
+            self.equipped_weapon = weapon
+            return f"{self.name} equipped {weapon['name']}!"
+        return f"{self.name} cannot equip {weapon['name']}!"
+        
+    def can_equip(self, weapon):
+        return False  # Default to not equipping anything
+
 class Mage(Player):
     def __init__(self, name):
         self.name = name
@@ -20,6 +29,9 @@ class Mage(Player):
         self.dexterity = 10
         self.intelligence = 18
         self.magic_power = 25  # Unique attribute
+    
+    def can_equip(self, weapon):
+        return weapon["type"] == "staff"
     
     def cast_spell(self):
         return f"{self.name} casts a powerful spell!"
@@ -35,6 +47,9 @@ class Warrior(Player):
         self.intelligence = 6
         self.armor = 20  # Unique attribute
     
+    def can_equip(self, weapon):
+        return weapon["type"] == "sword"
+    
     def attack(self):
         return f"{self.name} swings their mighty sword!"
     
@@ -49,6 +64,9 @@ class Shadow(Player):  # Thief class
         self.intelligence = 10
         self.stealth = 30  # Unique attribute
     
+    def can_equip(self, weapon):
+        return weapon["type"] == "dagger"
+    
     def sneak_attack(self):
         return f"{self.name} performs a deadly sneak attack!"
     
@@ -62,6 +80,9 @@ class Archer(Player):
         self.dexterity = 16
         self.intelligence = 8
         self.crit_chance = 5  # Unique attribute
+    
+    def can_equip(self, weapon):
+        return weapon["type"] == "bow"
     
     def shoot_arrow(self):
         return f"{self.name} fires a precise arrow!"
