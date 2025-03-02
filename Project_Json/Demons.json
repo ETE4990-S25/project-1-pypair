@@ -1,0 +1,115 @@
+{
+    "demons": {
+        "tier_1": [
+            {
+                "name": "Fallen",
+                "hp": 40,
+                "damage": 6,
+                "defense": 4,
+                "special_attack": "Slash"
+            },
+            {
+                "name": "Fallen Shaman",
+                "hp": 70,
+                "damage": 8,
+                "defense": 5,
+                "special_attack": "Fireball"
+            },
+            {
+                "name": "Bloodhawk",
+                "hp": 50,
+                "damage": 7,
+                "defense": 5,
+                "special_attack": "Flame Burst"
+            },
+            {
+                "name": "Corrupt Rogue Archer",
+                "hp": 70,
+                "damage": 10,
+                "defense": 6,
+                "special_attack": "Fire Arrow"
+            },
+            {
+                "name": "Zombie",
+                "hp": 50,
+                "damage": 6,
+                "defense": 4,
+                "special_attack": "Bite"
+            }
+        ],
+        "tier_2": [
+            {
+                "name": "Skeleton",
+                "hp": 90,
+                "damage": 8,
+                "defense": 8,
+                "special_attack": "Slash"
+            },
+            {
+                "name": "Skeleton Mage",
+                "hp": 90,
+                "damage": 8,
+                "defense": 8,
+                "special_attack": "Elemental Magic"
+            },
+            {
+                "name": "Sabre Cat",
+                "hp": 100,
+                "damage": 9,
+                "defense": 8,
+                "special_attack": "Slash"
+            },
+            {
+                "name": "Wraith",
+                "hp": 100,
+                "damage": 10,
+                "defense": 7,
+                "special_attack": "Necrotic Wave"
+            },
+            {
+                "name": "Oblivion Knight",
+                "hp": 90,
+                "damage": 12,
+                "defense": 8,
+                "special_attack": "Elemental Magic"
+            }
+        ],
+        "tier_3": [
+            {
+                "name": "Blood Lord",
+                "hp": 120,
+                "damage": 18,
+                "defense": 12,
+                "special_attack": "Frenzy"
+            },
+            {
+                "name": "Frozen Horror",
+                "hp": 120,
+                "damage": 15,
+                "defense": 12,
+                "special_attack": "Arctic Blast"
+            },
+            {
+                "name": "Death Mauler",
+                "hp": 100,
+                "damage": 12,
+                "defense": 10,
+                "special_attack": "Ground Spike"
+            },
+            {
+                "name": "Apocalyptic Ravager",
+                "hp": 650,
+                "damage": 85,
+                "defense": 45,
+                "special_attack": "Cataclysmic Fury"
+            },
+            {
+                "name": "Underworld Tyrant",
+                "hp": 700,
+                "damage": 90,
+                "defense": 50,
+                "special_attack": "Demonic Dominion"
+            }
+        ]
+    }
+}
