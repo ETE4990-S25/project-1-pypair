@@ -12,7 +12,7 @@ The objective of this project is to create a Python text game that involves fant
 
 ## Members
 - Member 1: Huynh Gia Phong Tat
-- Member 2: Name
+- Member 2: Namho Kye
 
 
 
