@@ -1,17 +1,11 @@
 import Game_Story
 import os
 import textwrap
-from Ultilities import slow_print
+from Ultilities import slow_print, clear_screen, wrap_text
 
 from Player import Mage, Warrior, Shadow, Archer
 
-def clear_screen():
-    """Clears the terminal screen for better visibility."""
-    os.system("cls" if os.name == "nt" else "clear")
 
-def wrap_text(text, width=80):
-    """Wraps text to a specified width for better display."""
-    return "\n".join(textwrap.wrap(text, width))
 
 def menu_generator(options):
     """Yields a formatted menu option list."""
@@ -61,8 +55,6 @@ def choose_class():
 
 def start_storyline():
     """Loads the storyline and starts the game."""
-    clear_screen()
-    storyline = Game_Story.load_story()
     player = choose_class()
     Game_Story.start_story(player)
 

@@ -1,11 +1,10 @@
 import json
 import os
 import textwrap
-from Ultilities import slow_print
+from Ultilities import slow_print, clear_screen, wrap_text
 from Combat_System import combat, spawn_demon
 from Player import Mage, Warrior, Shadow, Archer
 from Inventory import display_inventory
-from Menu import clear_screen, wrap_text
 
 # Load storyline JSON
 def load_story():
@@ -27,9 +26,12 @@ def progress_story(player, node, storyline):
         return
     
     event = storyline[node]
+
+    # Display story text ONCE
     clear_screen()
     slow_print(wrap_text(event["text"]), delay=0.05)
-    
+
+    # Handle event (combat or item)
     if "event" in event:
         if event["event"] == "combat":
             demon = spawn_demon("tier_1")
@@ -38,20 +40,26 @@ def progress_story(player, node, storyline):
             item = event["item"]
             slow_print(f"You obtained {item}!", delay=0.05)
             player.inventory.append(item)
-        
+
+    # Only re-prompt for choices without re-printing the story
     if "choices" in event:
-        while True:
-            clear_screen()
-            slow_print(wrap_text(event["text"]), delay=0.05)
+        while True:  # Keep asking until the user enters a valid choice
+            slow_print("\nWhat do you do?")
             for key, value in event["choices"].items():
                 slow_print(f"[{key}] {value}", delay=0.05)
-            
+
             choice = input("Choose an action: ").strip().lower()
+
             if choice in event["choices"]:
-                progress_story(player, event["choices"][choice], storyline)
-                break
-            else:
-                slow_print("Invalid choice. Try again.", delay=0.05)
+                next_node = event["choices"][choice]
+                progress_story(player, next_node, storyline)  # Move to the next part of the story
+                return  # Stop asking for input once a valid choice is made
+
+            slow_print("Invalid choice. Please try again.", delay=0.05)
+
+                
+
+
 
 def start_story(player):
     """Starts the storyline with the provided player instance."""
