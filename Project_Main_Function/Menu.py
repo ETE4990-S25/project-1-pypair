@@ -63,7 +63,6 @@ def start_storyline():
     clear_screen()
     storyline = load_storyline()
     player = choose_class()
-    slow_print(wrap_text(storyline["menu_link"]["text"]), delay=0.05)  # Wraps long text
     progress_story(player, "menu_link", storyline)
 
 def execute_option(choice):
