@@ -64,8 +64,7 @@ def combat(player, demon):
             return
         #Demon attacks back if alive
         if demon["hp"] > 0:
-            demon_damage = demon["damage"] - (player.strength // 2)
-            demon_damage = max(1, demon_damage) # Ensure at least 1 damage is dealt
+            demon_damage = max(1, demon["damage"] - (player.armor // 2))  # Use armor instead of strength
             player.hp -= demon_damage
             print(f"{demon['name']} strikes {player.name} for {demon_damage} damage!")
     #Check battle outcome
