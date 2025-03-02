@@ -2,13 +2,25 @@ import os
 import json
 import random
 import logging
+from Player import Player, Mage, Warrior, Shadow, Archer
 
 # Configure logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
 # Construct the relative path to the JSON file
 demons_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), "Project_Json", "Demons.json")
+items_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), "Project_Json", "Items.json")
 
+# Load items from Items.json
+try:
+    with open(items_path, "r") as file:
+        items_data = json.load(file)
+except FileNotFoundError:
+    logging.error(f"Error: Could not find {items_path}")
+    items_data = {}
+except json.JSONDecodeError:
+    logging.error("Error: Invalid JSON format in Items.json")
+    items_data = {}
 
 # Load demons from Demons.json
 try:
@@ -60,3 +72,42 @@ def combat(player, demon):
     if player.hp > 0:
         print(f"{player.name} defeated {demon['name']}! Gained {demon['exp']} XP!")
         player.gain_experience(demon["exp"])
+    else:
+        print(f"{player.name} was defeated by {demon['name']}...")
+
+# Function to get primary stat for damage calculations
+def get_primary_stat(player):
+    if isinstance(player, Mage):
+        return player.intelligence
+    elif isinstance(player, Warrior):
+        return player.strength
+    elif isinstance(player, Shadow):
+        return (player.dexterity + player.strength + player.intelligence) // 3
+    elif isinstance(player, Archer):
+        return player.dexterity
+
+
+# Function to calculate player attack damage
+def calculate_damage(player, demon):
+    base_damage = 5 + (get_primary_stat(player) // 2)
+    weapon_damage = player.equipped_weapon["damage"] if player.equipped_weapon else 0
+    
+    if isinstance(player, Mage):
+        return base_damage + weapon_damage + (player.magic_power // 4)
+    elif isinstance(player, Warrior):
+        return base_damage + weapon_damage + (player.strength // 3)
+    elif isinstance(player, Shadow):
+        return base_damage + weapon_damage + (player.dexterity // 3)
+    elif isinstance(player, Archer):
+        return base_damage + weapon_damage + (player.crit_chance // 2)
+    return base_damage + weapon_damage
+
+# Example combat test
+if __name__ == "__main__":
+    player = Mage("Gandalf")  # Change class to test different combat styles
+    player.equip_weapon({"name": "Apprentice's Staff", "damage": 10})  # Example equipped weapon
+    demon = spawn_demon("tier_1")
+    if demon:
+        combat(player, demon)
+    else:
+        print("No demons found in this tier.")
