@@ -51,7 +51,7 @@ def execute_option(choice):
     """Executes the selected menu option."""
     if choice == 1:
         start_storyline()
-        gamestart() #Placeholder for the game start function
+        game_start() #Placeholder for the game start function
     elif choice == 2:
         slow_print("Loading game...", delay=0.07)
     elif choice == 3:
