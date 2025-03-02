@@ -61,6 +61,10 @@ class Player:
 class Mage(Player):
     ALLOWED_WEAPONS = {"Mage": ["staff"]}
     
+    def __init__(self, name):
+        super().__init__(name, 80, 150, 60, 6, 10, 18)
+        self.magic_power = 25  # Unique attribute
+    
     def level_up(self):
         super().level_up()
         self.hp += 5
@@ -71,6 +75,10 @@ class Mage(Player):
 class Warrior(Player):
     ALLOWED_WEAPONS = {"Warrior": ["sword"]}
     
+    def __init__(self, name):
+        super().__init__(name, 150, 40, 100, 18, 8, 6)
+        self.armor = 20  # Unique attribute
+    
     def level_up(self):
         super().level_up()
         self.hp += 15
@@ -80,6 +88,10 @@ class Warrior(Player):
 
 class Shadow(Player):  # Thief class
     ALLOWED_WEAPONS = {"Shadow": ["dagger"]}
+    
+    def __init__(self, name):
+        super().__init__(name, 90, 60, 120, 8, 18, 10)
+        self.stealth = 30  # Unique attribute
     
     def level_up(self):
         super().level_up()
@@ -92,6 +104,10 @@ class Shadow(Player):  # Thief class
 
 class Archer(Player):
     ALLOWED_WEAPONS = {"Archer": ["bow"]}
+    
+    def __init__(self, name):
+        super().__init__(name, 100, 50, 90, 10, 16, 8)
+        self.crit_chance = 5  # Unique attribute
     
     def level_up(self):
         super().level_up()
