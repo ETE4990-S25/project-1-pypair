@@ -3,7 +3,7 @@ import os
 import textwrap
 from Ultilities import slow_print
 from Combat_System import combat, spawn_demon
-from Player import Player
+from Player import Mage, Warrior, Shadow, Archer
 from Inventory import display_inventory
 
 # Load storyline JSON
@@ -53,5 +53,5 @@ def progress_story(player, node, storyline):
 
 if __name__ == "__main__":
     storyline = load_storyline()
-    player = Player("Hero", 100, 50, 50, 10, 10, 10)  # Temporary player instance
-    progress_story(player, "start", storyline)
+    from Menu import player  # Import the already selected player from the menu
+    progress_story(player, "menu_link", storyline)
