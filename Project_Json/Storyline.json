@@ -1,6 +1,6 @@
 {
     "menu_link": {
-      "text": "You stand at a crossroads, ready to embark on your adventure.",
+      "text": "You have wandered far, stranger. You arrive at the Rogue Encampment, the last bastion of safety in a land consumed by darkness. The corrupted wilderness stretches ahead, filled with horrors unseen. Akara, the encampment's leader, greets you with grave news: the demonic forces of the Burning Hells have begun their march. If you are to survive, you must prove your worth...",
       "choices": {
         "begin": "start"
       }
