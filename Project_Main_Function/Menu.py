@@ -1,3 +1,5 @@
+from Ultilities import slow_print
+
 def menu_generator(options):
     """Yields a formatted menu option list."""
     for index, option in enumerate(options):
@@ -5,9 +7,9 @@ def menu_generator(options):
 
 def display_menu(options):
     """Displays the menu options."""
-    print("\n=== Game Menu ===")
+    slow_print("\n=== Game Menu ===", delay=0.05)
     for item in menu_generator(options):
-        print(item)
+        slow_print(item, delay=0.05)
 
 def handle_choice(options):
     """Handles user input for menu selection."""
@@ -15,7 +17,7 @@ def handle_choice(options):
         try:
             choice = int(input("\nSelect an option: ").strip())
             if 1 <= choice <= len(options):
-                print(f"You chose: {options[choice - 1]}")
+                slow_print(f"You chose: {options[choice - 1]}", delay=0.05)
                 return choice  # Returning choice for further processing
             else:
                 print("Invalid choice. Please select a valid option.")
@@ -28,13 +30,13 @@ def main():
     selected_option = handle_choice(menu_options)
 
     if selected_option == 1:
-        print("Starting game...")
+        slow_print("Starting game...", delay=0.07)
     elif selected_option == 2:
-        print("Loading game...")
+        slow_print("Loading game...", delay=0.07)
     elif selected_option == 3:
-        print("Exiting game...")
+        slow_print("Exiting game...", delay=0.07)
     else:
-        print("Unexpected error.")
+        slow_print("Unexpected error.", delay=0.07)
 
 if __name__ == "__main__":
     main()
