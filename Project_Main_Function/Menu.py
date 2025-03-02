@@ -1,5 +1,7 @@
 import os
 from Ultilities import slow_print
+from Storyline import load_storyline, progress_story
+from Player import Player
 
 def clear_screen():
     """Clears the terminal screen for better visibility."""
@@ -32,26 +34,16 @@ def handle_choice(options):
             slow_print("Invalid input. Please enter a number.", delay=0.05)
 
 def start_storyline():
-    """Displays the game's introduction storyline with slow printing."""
+    """Loads the storyline and starts the game."""
     clear_screen()
-    slow_print("\nThe world has fallen into darkness...", delay=0.07)
-    slow_print("Demonic creatures roam the land, terrorizing villages and devouring the innocent.", delay=0.07)
-    slow_print("Only a handful of warriors dare to stand against the abyss...", delay=0.07)
-    
-    input("\nPress Enter to continue...")  # Pause for player interaction
-    clear_screen()
-    
-    slow_print("You are one of them.", delay=0.07)
-    slow_print("A lone hero, standing at the edge of fate.", delay=0.07)
-    slow_print("Your journey begins now...", delay=0.07)
-
-    input("\nPress Enter to enter the world...")  # Final pause before gameplay
+    storyline = load_storyline()
+    player = Player("Hero", 100, 50, 50, 10, 10, 10)  # Temporary player instance
+    progress_story(player, "menu_link", storyline)
 
 def execute_option(choice):
     """Executes the selected menu option."""
     if choice == 1:
         start_storyline()
-        game_start() #Placeholder for the game start function
     elif choice == 2:
         slow_print("Loading game...", delay=0.07)
     elif choice == 3:
