@@ -6,7 +6,7 @@ from Inventory import display_inventory
 
 # Load storyline JSON
 def load_storyline():
-    storyline_path = os.path.join(os.path.dirname(__file__), "Project_Json", "Storyline.json")
+    storyline_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), "Project_Json", "Storyline.json")
     try:
         with open(storyline_path, "r") as file:
             return json.load(file)

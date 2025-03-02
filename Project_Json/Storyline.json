@@ -1,4 +1,10 @@
 {
+    "menu_link": {
+      "text": "You stand at a crossroads, ready to embark on your adventure.",
+      "choices": {
+        "begin": "start"
+      }
+    },
     "start": {
       "text": "You awaken in the Rogue Encampment, a refuge for adventurers. Akara greets you with a task.",
       "choices": {
@@ -84,3 +90,4 @@
       "event": "end"
     }
   }
+  
