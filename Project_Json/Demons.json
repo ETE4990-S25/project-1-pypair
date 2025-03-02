@@ -97,18 +97,18 @@
                 "special_attack": "Ground Spike"
             },
             {
-                "name": "Apocalyptic Ravager",
-                "hp": 650,
-                "damage": 85,
-                "defense": 45,
+                "name": "Megademon",
+                "hp": 130,
+                "damage": 18,
+                "defense": 12,
                 "special_attack": "Cataclysmic Fury"
             },
             {
                 "name": "Underworld Tyrant",
-                "hp": 700,
-                "damage": 90,
-                "defense": 50,
-                "special_attack": "Demonic Dominion"
+                "hp": 130,
+                "damage": 18,
+                "defense": 12,
+                "special_attack": "Bash"
             }
         ]
     }
