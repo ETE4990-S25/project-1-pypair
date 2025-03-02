@@ -42,7 +42,7 @@ def spawn_demon(tier):
 ## Combat System
 def combat(player, demon):
     logging.info(f"{player.name} encounters {demon['name']}!")
-    while player.hp >0 and demon["hp"] > 0:
+    while player.hp > 0 and demon["hp"] > 0:
         print(f"\n{player.name}: HP {player.hp} | {demon['name']}: HP {demon['hp']}")
         action = input("Choose an action: (1) Attack, (2) Use Item, (3) Run: ")
         # Player actions
@@ -55,8 +55,7 @@ def combat(player, demon):
         elif action == "3":  # Run
             print(f"{player.name} tries to run away from {demon['name']}!")
             if random.random() < 0.2:  # 20% chance of getting hit while running
-                demon_damage = demon["damage"] - (player.strength // 2)
-                demon_damage = max(1, demon_damage)  # Ensure at least 1 damage
+                demon_damage = max(1, demon["damage"] - (player.armor // 2))  # Use armor instead of strength
                 player.hp -= demon_damage
                 print(f"{demon['name']} strikes {player.name} while running for {demon_damage} damage!")
             else:
