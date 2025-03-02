@@ -1,0 +1,95 @@
+{
+    "items": {
+      "beginner": [
+        {
+          "name": "Wooden Sword",
+          "type": "sword",
+          "rarity": "common",
+          "damage": "1d6",
+          "description": "A simple but sturdy wooden sword."
+        },
+        {
+          "name": "Leather Armor",
+          "type": "armor",
+          "rarity": "common",
+          "defense": 10,
+          "description": "Basic leather armor offering minimal protection."
+        },
+        {
+          "name": "Wooden Shield",
+          "type": "shield",
+          "rarity": "common",
+          "defense": 5,
+          "description": "A lightweight shield made of wood."
+        },
+        {
+          "name": "Copper Ring",
+          "type": "ring",
+          "rarity": "common",
+          "effect": "Slightly increases magic resistance.",
+          "description": "A simple copper ring with faint magical properties."
+        }
+      ],
+      "intermediate": [
+        {
+          "name": "Steel Broadsword",
+          "type": "sword",
+          "rarity": "uncommon",
+          "damage": "1d8",
+          "description": "A well-forged steel broadsword, balanced and deadly."
+        },
+        {
+          "name": "Chainmail Armor",
+          "type": "armor",
+          "rarity": "uncommon",
+          "defense": 25,
+          "description": "A suit of chainmail offering good protection without limiting mobility."
+        },
+        {
+          "name": "Kite Shield",
+          "type": "shield",
+          "rarity": "uncommon",
+          "defense": 15,
+          "description": "A strong, metal-reinforced shield for capable warriors."
+        },
+        {
+          "name": "Silver Amulet of Vitality",
+          "type": "amulet",
+          "rarity": "uncommon",
+          "effect": "Increases stamina regeneration.",
+          "description": "A finely crafted amulet that grants endurance to the wearer."
+        }
+      ],
+      "advanced": [
+        {
+          "name": "Sword of Eternal Flame",
+          "type": "sword",
+          "rarity": "legendary",
+          "damage": "2d10 fire",
+          "description": "A blade imbued with the essence of fire, capable of scorching enemies with each strike."
+        },
+        {
+          "name": "Aegis of the Moon",
+          "type": "shield",
+          "rarity": "epic",
+          "defense": 50,
+          "description": "A shield blessed by lunar priests, providing unmatched protection against dark magic."
+        },
+        {
+          "name": "Ring of the Phantom",
+          "type": "ring",
+          "rarity": "legendary",
+          "effect": "Grants temporary invisibility.",
+          "description": "A mystical ring that allows the wearer to vanish from sight."
+        },
+        {
+          "name": "Boots of Swiftness",
+          "type": "boots",
+          "rarity": "uncommon",
+          "effect": "Increases movement speed.",
+          "description": "Lightweight boots infused with wind magic, allowing the wearer to move with incredible speed."
+        }
+      ]
+    }
+  }
+  
