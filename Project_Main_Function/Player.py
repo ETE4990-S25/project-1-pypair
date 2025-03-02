@@ -5,7 +5,7 @@ import logging
 from Inventory import display_inventory
 
 # Configure logging
-logging.basicConfig(level=logging.ERROR, format='%(asctime)s - %(levelname)s - %(message)s')
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
 # Construct the relative path to the JSON file
 json_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), "Project_Json", "Items.json")
@@ -21,7 +21,9 @@ except json.JSONDecodeError:
 
 ## Function for player class
 class Player:
-### Player attributes
+    EXP_SCALING_FACTOR = 1.5
+    ALLOWED_WEAPONS = {}
+
     def __init__(self, name: str, hp: int, mana: int, stamina: int, strength: int, dexterity: int, intelligence: int):
         self.name = name
         self.hp = hp
@@ -33,7 +35,7 @@ class Player:
         self.level = 1
         self.experience = 0
         self.exp_to_level = 10  # Base experience required for level 2
-        self.inventory = []
+        self.inventory = []  # Initialized in parent class to avoid redundancy
         self.equipped_weapon = None
     
     def equip_weapon(self, weapon):
@@ -43,19 +45,22 @@ class Player:
         return f"{self.name} cannot equip {weapon['name']}!"
     
     def can_equip(self, weapon):
-        return False  # Default to not equipping anything
+        return weapon["type"] in self.ALLOWED_WEAPONS.get(self.__class__.__name__, [])
     
     def gain_experience(self, amount):
         self.experience += amount
         while self.experience >= self.exp_to_level:
+            self.experience -= self.exp_to_level
             self.level_up()
     
     def level_up(self):
         self.level += 1
-        self.experience -= self.exp_to_level
-        self.exp_to_level = int(self.exp_to_level * 1.5)
+        self.exp_to_level = int(self.exp_to_level * self.EXP_SCALING_FACTOR)
+        logging.info(f"{self.name} leveled up to {self.level}!")
 
 class Mage(Player):
+    ALLOWED_WEAPONS = {"Mage": ["staff"]}
+    
     def level_up(self):
         super().level_up()
         self.hp += 5
@@ -64,6 +69,8 @@ class Mage(Player):
         self.intelligence += 5
 
 class Warrior(Player):
+    ALLOWED_WEAPONS = {"Warrior": ["sword"]}
+    
     def level_up(self):
         super().level_up()
         self.hp += 15
@@ -72,6 +79,8 @@ class Warrior(Player):
         self.strength += 5
 
 class Shadow(Player):  # Thief class
+    ALLOWED_WEAPONS = {"Shadow": ["dagger"]}
+    
     def level_up(self):
         super().level_up()
         self.hp += 7
@@ -82,6 +91,8 @@ class Shadow(Player):  # Thief class
         self.intelligence += 2
 
 class Archer(Player):
+    ALLOWED_WEAPONS = {"Archer": ["bow"]}
+    
     def level_up(self):
         super().level_up()
         self.hp += 10
