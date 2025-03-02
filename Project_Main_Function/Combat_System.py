@@ -58,5 +58,5 @@ def combat(player, demon):
             print(f"{demon['name']} strikes {player.name} for {demon_damage} damage!")
     #Check battle outcome
     if player.hp > 0:
-        print(f"{player.name} defeated {demon['name']}!")
+        print(f"{player.name} defeated {demon['name']}! Gained {demon['exp']} XP!")
         player.gain_experience(demon["exp"])
