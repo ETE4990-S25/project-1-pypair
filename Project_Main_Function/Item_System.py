@@ -29,3 +29,28 @@ class Item:
     
     def __str__(self):
         return f"{self.name} ({self.rarity}) - {self.type}: {self.attributes}"
+       
+# Inventory system
+class Inventory:
+    def __init__(self):
+        self.items = []
+    
+    def add_item(self, item):
+        self.items.append(item)
+        logging.info(f"Added {item.name} to inventory.")
+    
+    def remove_item(self, item):
+        if item in self.items:
+            self.items.remove(item)
+            logging.info(f"Removed {item.name} from inventory.")
+        else:
+            logging.warning("Item not found in inventory.")
+    
+    def find_item(self, item_name):
+        for item in self.items:
+            if item.name.lower() == item_name.lower():
+                return item
+        return None
+    
+    def show_inventory(self):
+        self.inventory.display_inventory()
