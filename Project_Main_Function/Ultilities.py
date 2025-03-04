@@ -41,7 +41,7 @@ def save_game(player):
         "dexterity": player.dexterity,
         "intelligence": player.intelligence,
         "experience": player.experience,
-        "inventory": [item.name for item in player.inventory.items]  # Saves item names only
+        "inventory": [item.name for item in player.inventory.items]
     }
     with open(save_path, "w") as file:
         json.dump(data, file, indent=4)
@@ -63,7 +63,7 @@ def load_game(player):
         player.dexterity = data["dexterity"]
         player.intelligence = data["intelligence"]
         player.experience = data["experience"]
-        # Restore inventory with item names (attributes unknown at load time)
+        # Restore inventory with item names
         player.inventory.items = [Item(name=item_name, item_type="unknown", rarity="unknown") for item_name in data["inventory"]]
         
         logging.info("Game loaded successfully.")
