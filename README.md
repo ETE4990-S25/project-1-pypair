@@ -8,6 +8,12 @@ The objective of this project is to create a Python text game that involves fant
 ### Week 1 Objective
 - Create the basic structure of the Python text game.
 - Implement the core mechanics for fighting demons.
+- Design different types of items with unique attributes.
+
+### Week 2 Objective
+- Create fighting functionality
+- Implement the story and gameplay
+- Implement ultilities functionality
 - Design different types of demons with unique attributes.
 
 ## Members
