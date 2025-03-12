@@ -4,7 +4,7 @@ import textwrap
 from Ultilities import slow_print, clear_screen, wrap_text
 from Combat_System import combat, spawn_demon
 from Player import Mage, Warrior, Shadow, Archer
-from Inventory import display_inventory
+from Inventory import display_inventory, use_item
 
 # Load storyline JSON
 def load_story():
@@ -27,7 +27,7 @@ def progress_story(player, node, storyline):
     
     event = storyline[node]
 
-    # Display story text ONCE
+    # Display story text
     clear_screen()
     slow_print(wrap_text(event["text"]), delay=0.05)
 
@@ -45,22 +45,29 @@ def progress_story(player, node, storyline):
             slow_print(f"You obtained {item}!", delay=0.05)
             player.inventory.append(item)
 
-    # Only re-prompt for choices without re-printing the story
-    if "choices" in event:
-        while True:  # Keep asking until the user enters a valid choice
-            slow_print("\nWhat do you do?")
-            for key, value in event["choices"].items():
-                slow_print(f"[{key}] {value}", delay=0.05)
+    while True:
+        slow_print("\nWhat do you do?")
+        for key, value in event.get("choices", {}).items():
+            slow_print(f"[{key}] {value}", delay=0.05)
 
-            choice = input("Choose an action: ").strip().lower()
+        # Always allow inventory check
+        slow_print("[inventory] Check Inventory", delay=0.05)
+        
+        choice = input("Choose an action: ").strip().lower()
 
-            if choice in event["choices"]:
-                next_node = event["choices"][choice]
-                progress_story(player, next_node, storyline)  # Move to the next part of the story
-                return  # Stop asking for input once a valid choice is made
+        if choice == "inventory":
+            display_inventory(player.inventory)
+            continue  # Loop back to show options again
+        elif choice == "use item":
+            item_name = input("Enter the item name to use: ").strip()
+            use_item(player, item_name)
+            continue  # Allow using multiple items before choosing an action
+        elif choice in event.get("choices", {}):
+            next_node = event["choices"][choice]
+            progress_story(player, next_node, storyline)  # Move forward
+            return  # Stop asking for input
 
-            slow_print("Invalid choice. Please try again.", delay=0.05)
-
+        slow_print("Invalid choice. Please try again.", delay=0.05)
                 
 
 
@@ -68,7 +75,25 @@ def progress_story(player, node, storyline):
 def start_story(player):
     """Starts the storyline with the provided player instance."""
     storyline = load_story()
-    if "menu_link" in storyline:
-        progress_story(player, "menu_link", storyline)
-    else:
-        slow_print("Error: Missing 'menu_link' in storyline data.", delay=0.05)
+    
+    while True:  # Allow interaction before starting
+        slow_print("\nYou are in town. What would you like to do?")
+        slow_print("[start] Begin your adventure")
+        slow_print("[inventory] Check Inventory")
+        slow_print("[use item] Use an Item")
+        
+        choice = input("Choose an action: ").strip().lower()
+
+        if choice == "inventory":
+            display_inventory(player.inventory)
+        elif choice == "use item":
+            item_name = input("Enter the item name to use: ").strip()
+            use_item(player, item_name)
+        elif choice == "start":
+            if "menu_link" in storyline:
+                progress_story(player, "menu_link", storyline)
+            else:
+                slow_print("Error: Missing 'menu_link' in storyline data.", delay=0.05)
+            return
+        else:
+            slow_print("Invalid choice. Try again.")

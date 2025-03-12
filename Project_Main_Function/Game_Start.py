@@ -62,7 +62,7 @@ def execute_option(choice):
     """Executes the selected menu option."""
     if choice == 1:
         player = choose_class()
-        save_game(player)
+
         start_storyline(player)
         
     elif choice == 2:
