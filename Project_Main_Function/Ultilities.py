@@ -48,13 +48,20 @@ def save_game(player):
     logging.info("Game saved successfully.")
 
 
-def load_game(player):
-    """Loads the player's game from a JSON file."""
+def load_game():
+    """Loads the player's game from a JSON file and returns a Player object."""
     try:
         with open(save_path, "r") as file:
             data = json.load(file)
-        # Restore player attributes
-        player.name = data["name"]
+
+        player_class = {"Mage": Mage, "Warrior": Warrior, "Shadow": Shadow, "Archer": Archer}
+        if data["class"] not in player_class:
+            logging.error("Invalid class in save data. Starting a new game.")
+            return None
+
+        player = player_class[data["class"]](data["name"])
+        
+        # Restore attributes
         player.level = data["level"]
         player.hp = data["hp"]
         player.mana = data["mana"]
@@ -63,11 +70,12 @@ def load_game(player):
         player.dexterity = data["dexterity"]
         player.intelligence = data["intelligence"]
         player.experience = data["experience"]
-        # Restore inventory with item names
+
+        # Restore inventory
         player.inventory.items = [Item(name=item_name, item_type="unknown", rarity="unknown") for item_name in data["inventory"]]
-        
+
         logging.info("Game loaded successfully.")
-    except FileNotFoundError:
-        logging.warning("No saved game found.")
-    except json.JSONDecodeError:
-        logging.error("Error loading saved game data.")
+        return player
+    except (FileNotFoundError, json.JSONDecodeError):
+        logging.warning("No valid saved game found.")
+        return None
