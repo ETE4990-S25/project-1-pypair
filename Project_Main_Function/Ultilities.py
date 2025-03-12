@@ -4,6 +4,10 @@ import json
 import logging
 import time
 import textwrap
+from Player import Mage, Warrior, Shadow, Archer
+from Inventory import display_inventory, Item
+
+
 
 # Configure logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
@@ -33,6 +37,7 @@ def save_game(player):
     """Saves the player's game to a JSON file."""
     data = {
         "name": player.name,
+        "player_class": player.__class__.__name__,
         "level": player.level,
         "hp": player.hp,
         "mana": player.mana,
@@ -41,7 +46,7 @@ def save_game(player):
         "dexterity": player.dexterity,
         "intelligence": player.intelligence,
         "experience": player.experience,
-        "inventory": [item.name for item in player.inventory.items]
+        "inventory": [item.name for item in player.inventory]
     }
     with open(save_path, "w") as file:
         json.dump(data, file, indent=4)
@@ -55,9 +60,10 @@ def load_game():
             data = json.load(file)
 
         player_class = {"Mage": Mage, "Warrior": Warrior, "Shadow": Shadow, "Archer": Archer}
-        if data["class"] not in player_class:
-            logging.error("Invalid class in save data. Starting a new game.")
+        if "class" not in data or data["class"] not in player_class:
+            logging.error("Invalid or missing class in save data. Starting a new game.")
             return None
+
 
         player = player_class[data["class"]](data["name"])
         
@@ -70,9 +76,7 @@ def load_game():
         player.dexterity = data["dexterity"]
         player.intelligence = data["intelligence"]
         player.experience = data["experience"]
-
-        # Restore inventory
-        player.inventory.items = [Item(name=item_name, item_type="unknown", rarity="unknown") for item_name in data["inventory"]]
+        player.inventory = [Item(name=item_name, item_type="unknown", rarity="unknown") for item_name in data["inventory"]]
 
         logging.info("Game loaded successfully.")
         return player

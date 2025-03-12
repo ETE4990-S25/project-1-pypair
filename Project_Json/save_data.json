@@ -1,0 +1,12 @@
+{
+    "name": "phong",
+    "level": 1,
+    "hp": 150,
+    "mana": 40,
+    "stamina": 100,
+    "strength": 18,
+    "dexterity": 8,
+    "intelligence": 6,
+    "experience": 0,
+    "inventory": []
+}

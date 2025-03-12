@@ -35,7 +35,11 @@ def progress_story(player, node, storyline):
     if "event" in event:
         if event["event"] == "combat":
             demon = spawn_demon("tier_1")
-            combat(player, demon)
+            if demon:
+                combat(player, demon, node)
+            else:
+                slow_print("No demons available to fight!", delay=0.05)
+            combat(player, demon, node)
         elif event["event"] == "item":
             item = event["item"]
             slow_print(f"You obtained {item}!", delay=0.05)

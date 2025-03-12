@@ -1,5 +1,15 @@
 import json
 
+class Item:
+    def __init__(self, name, item_type, rarity):
+        self.name = name
+        self.item_type = item_type
+        self.rarity = rarity
+
+    def __repr__(self):
+        return f"{self.rarity} {self.name} ({self.item_type})"
+
+
 def display_inventory(inventory):
     """Displays the player's inventory."""
     print("\nPlayer Inventory:")

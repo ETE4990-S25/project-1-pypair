@@ -44,9 +44,9 @@ def spawn_demon(tier):
 def get_loot_drop(location):
     """Determines item drop rarity based on location."""
     if location in ["black_marsh", "forgotten_tower", "tamoe_highland", "monastery_gate", "catacombs"]:
-        loot_pool = items_data["intermediate"]  # Drops uncommon items
+        loot_pool = items_data.get("items", {}).get("intermediate", [])
     else:
-        loot_pool = items_data["beginner"]  # Drops common items
+        loot_pool = items_data.get("items", {}).get("beginner", [])
 
     return random.choice(loot_pool) if loot_pool else None
 
