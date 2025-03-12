@@ -3,6 +3,7 @@ import json
 import random
 import logging
 from Player import Player, Mage, Warrior, Shadow, Archer
+from Inventory import use_item, display_inventory
 
 # Configure logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
@@ -38,6 +39,16 @@ def spawn_demon(tier):
     if tier in demons_data:
         return random.choice(demons_data[tier])
     return None
+
+# Function to determine loot drops
+def get_loot_drop(location):
+    """Determines item drop rarity based on location."""
+    if location in ["black_marsh", "forgotten_tower", "tamoe_highland", "monastery_gate", "catacombs"]:
+        loot_pool = items_data["intermediate"]  # Drops uncommon items
+    else:
+        loot_pool = items_data["beginner"]  # Drops common items
+
+    return random.choice(loot_pool) if loot_pool else None
 
 # Combat System
 def combat(player, demon, location):
