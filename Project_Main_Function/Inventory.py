@@ -33,21 +33,20 @@ def use_item(player, item_name):
     """Allows a player to use or equip an item."""
     for item in player.inventory:
         if item["name"].lower() == item_name.lower():
-            # Check if it's a consumable item
             if "effect" in item:
                 apply_item_effect(player, item)
-                player.inventory.remove(item)  # Remove after use
+                player.inventory.remove(item)
                 print(f"{player.name} used {item['name']}!")
                 return
-            # Check if it's equippable (weapon or armor)
             elif "damage" in item or "defense" in item:
                 if meets_requirements(player, item):
                     equip_item(player, item)
                     print(f"{player.name} equipped {item['name']}!")
                 else:
-                    print(f"{player.name} does not meet the requirements to equip {item['name']}.")
+                    print(f"{player.name} cannot equip {item['name']}. Requirements not met.")
                 return
     print(f"{item_name} not found in inventory.")
+
 
 def apply_item_effect(player, item):
     """Applies the effect of a consumable item."""

@@ -35,7 +35,7 @@ def wrap_text(text, width=80):
 
 def save_game(player):
     """Saves the player's game to a JSON file."""
-    data = {
+    player_data = {
         "name": player.name,
         "player_class": player.__class__.__name__,
         "level": player.level,
@@ -49,7 +49,7 @@ def save_game(player):
         "inventory": [item.name for item in player.inventory]
     }
     with open(save_path, "w") as file:
-        json.dump(data, file, indent=4)
+        json.dump(player_data, file, indent=4)
     logging.info("Game saved successfully.")
 
 

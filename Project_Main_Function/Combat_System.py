@@ -55,6 +55,10 @@ def combat(player, demon, location):
     """Handles combat between the player and a demon."""
     logging.info(f"{player.name} encounters {demon['name']}!")
     
+    demon_hp = demon["hp"]
+    demon_damage = demon["damage"]
+    demon_exp = demon["exp"]
+    
     while player.hp > 0 and demon["hp"] > 0:
         print(f"\n{player.name}: HP {player.hp} | {demon['name']}: HP {demon['hp']}")
         action = input("Choose an action: (1) Attack, (2) Use Item, (3) Run: ").strip()

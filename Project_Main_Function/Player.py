@@ -59,7 +59,7 @@ class Player:
         logging.info(f"{self.name} leveled up to {self.level}!")
 
 class Mage(Player):
-    ALLOWED_WEAPONS = {"Mage": ["staff"]}
+    ALLOWED_WEAPONS = ["staff"]
     
     def __init__(self, name):
         super().__init__(name, 80, 150, 60, 6, 10, 18)
@@ -73,7 +73,7 @@ class Mage(Player):
         self.intelligence += 5
 
 class Warrior(Player):
-    ALLOWED_WEAPONS = {"Warrior": ["sword"]}
+    ALLOWED_WEAPONS = ["sword", "axe"]
     
     def __init__(self, name):
         super().__init__(name, 150, 40, 100, 18, 8, 6)
@@ -87,7 +87,7 @@ class Warrior(Player):
         self.strength += 5
 
 class Shadow(Player):  # Thief class
-    ALLOWED_WEAPONS = {"Shadow": ["dagger"]}
+    ALLOWED_WEAPONS = ["dagger"]
     
     def __init__(self, name):
         super().__init__(name, 90, 60, 120, 8, 18, 10)
@@ -103,7 +103,7 @@ class Shadow(Player):  # Thief class
         self.intelligence += 2
 
 class Archer(Player):
-    ALLOWED_WEAPONS = {"Archer": ["bow"]}
+    ALLOWED_WEAPONS = ["bow"]
     
     def __init__(self, name):
         super().__init__(name, 100, 50, 90, 10, 16, 8)
