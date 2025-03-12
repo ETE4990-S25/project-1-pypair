@@ -39,38 +39,52 @@ def spawn_demon(tier):
         return random.choice(demons_data[tier])
     return None
 
-## Combat System
-def combat(player, demon):
+# Combat System
+def combat(player, demon, location):
+    """Handles combat between the player and a demon."""
     logging.info(f"{player.name} encounters {demon['name']}!")
+    
     while player.hp > 0 and demon["hp"] > 0:
         print(f"\n{player.name}: HP {player.hp} | {demon['name']}: HP {demon['hp']}")
-        action = input("Choose an action: (1) Attack, (2) Use Item, (3) Run: ")
+        action = input("Choose an action: (1) Attack, (2) Use Item, (3) Run: ").strip()
+
         # Player actions
-        if action == "1":   # Attack
-            damage = calculate_damage(player, demon)    # Calculate damage
-            demon["hp"] -= damage   # Deal damage to demon
-            print(f"{player.name} dealt {damage} damage to {demon['name']}!")   # Print damage dealt
-        elif action == "2":
-            print("Using an item is not implemented yet!")
+        if action == "1":  # Attack
+            damage = calculate_damage(player, demon)
+            demon["hp"] -= damage
+            print(f"{player.name} dealt {damage} damage to {demon['name']}!")
+        elif action == "2":  # Use Item
+            item_name = input("Enter the item name to use: ").strip()
+            use_item(player, item_name)
         elif action == "3":  # Run
-            print(f"{player.name} tries to run away from {demon['name']}!")
-            if random.random() < 0.2:  # 20% chance of getting hit while running
-                demon_damage = max(1, demon["damage"] - (player.armor // 2))  # Use armor instead of strength
+            print(f"{player.name} tries to run away!")
+            if random.random() < 0.2:  # 20% chance of getting hit while escaping
+                demon_damage = max(1, demon["damage"] - (player.armor // 2))
                 player.hp -= demon_damage
-                print(f"{demon['name']} strikes {player.name} while running for {demon_damage} damage!")
+                print(f"{demon['name']} strikes {player.name} while escaping for {demon_damage} damage!")
             else:
                 print(f"{player.name} successfully escapes!")
             return
-        #Demon attacks back if alive
+
+        # Enemy's turn
         if demon["hp"] > 0:
-            player_defense = getattr(player, "armor", 0)  # Use armor if it exists, otherwise default to 0
+            player_defense = getattr(player, "armor", 0)
             demon_damage = max(1, demon["damage"] - (player_defense // 2))
             player.hp -= demon_damage
             print(f"{demon['name']} strikes {player.name} for {demon_damage} damage!")
-    #Check battle outcome
+
+    # Check battle outcome
     if player.hp > 0:
         print(f"{player.name} defeated {demon['name']}! Gained {demon['exp']} XP!")
         player.gain_experience(demon["exp"])
+
+        # Determine if an item drops
+        if random.random() < 0.5:  # 50% chance to drop an item
+            loot = get_loot_drop(location)
+            if loot:
+                player.inventory.append(loot)
+                print(f"{player.name} found a {loot['name']} ({loot['rarity']})!")
+
     else:
         print(f"{player.name} was defeated by {demon['name']}...")
 
