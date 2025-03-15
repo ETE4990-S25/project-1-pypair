@@ -5,10 +5,14 @@ import logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
 class Item:
-    def __init__(self, name, item_type, rarity):
+    def __init__(self, name, item_type, rarity, attributes=None):
         self.name = name
         self.item_type = item_type
         self.rarity = rarity
+        self.attributes = attributes or {}  # e.g., {"damage": 10, "effect": "heals 20"}
+
+    def has_attribute(self, attr):
+        return attr in self.attributes
 
     def __repr__(self):
         return f"{self.rarity} {self.name} ({self.item_type})"
