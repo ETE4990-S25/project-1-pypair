@@ -1,4 +1,8 @@
 import json
+import logging
+
+# Configure logging
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
 class Item:
     def __init__(self, name, item_type, rarity):
@@ -29,23 +33,42 @@ def display_inventory(inventory):
         print(f"   {item['description']}")
         print("-" * 30)
 
-def use_item(player, item_name):
-    """Allows a player to use or equip an item."""
-    for item in player.inventory:
-        if item["name"].lower() == item_name.lower():
+def use_item(player):
+    """Allows a player to use or equip an item via number selection."""
+    if not player.inventory:
+        logging.info("Your inventory is empty.")
+        return
+    
+    print("\nSelect an item to use:")
+    display_inventory(player.inventory)
+    
+    try:
+        choice = int(input("Enter the item number to use (or 0 to cancel): "))
+        if choice == 0:
+            logging.info("Cancelled.")
+            return
+        
+        if 1 <= choice <= len(player.inventory):
+            item = player.inventory[choice - 1]
+            
+            # Check if it's a consumable item
             if "effect" in item:
                 apply_item_effect(player, item)
-                player.inventory.remove(item)
-                print(f"{player.name} used {item['name']}!")
+                player.inventory.pop(choice - 1)  # Remove after use
+                logging.info(f"{player.name} used {item['name']}!")
                 return
+            # Check if it's equippable (weapon or armor)
             elif "damage" in item or "defense" in item:
                 if meets_requirements(player, item):
                     equip_item(player, item)
-                    print(f"{player.name} equipped {item['name']}!")
+                    logging.info(f"{player.name} equipped {item['name']}!")
                 else:
-                    print(f"{player.name} cannot equip {item['name']}. Requirements not met.")
+                    logging.warning(f"{player.name} does not meet the requirements to equip {item['name']}.")
                 return
-    print(f"{item_name} not found in inventory.")
+        else:
+            logging.warning("Invalid selection. Try again.")
+    except ValueError:
+        logging.error("Invalid input. Please enter a number.")
 
 
 def apply_item_effect(player, item):
