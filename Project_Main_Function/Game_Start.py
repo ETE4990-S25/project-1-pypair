@@ -1,7 +1,7 @@
 import Game_Story
 import os
 import textwrap
-from Utilities import slow_print, clear_screen, wrap_text, save_game, load_game
+from Ultilities import slow_print, clear_screen, wrap_text, save_game, load_game
 
 from Player import Mage, Warrior, Shadow, Archer
 
@@ -15,10 +15,10 @@ def menu_generator(options):
 def display_menu(options):
     """Displays the menu options."""
     clear_screen()
-    slow_print("\n=== Game Menu ===", delay=0.02)
-    slow_print("=" * 20, delay=0.02)
+    slow_print("\n=== Game Menu ===", delay=0.05)
+    slow_print("=" * 20, delay=0.05)
     for item in menu_generator(options):
-        slow_print(item, delay=0.02)
+        slow_print(item, delay=0.05)
 
 def handle_choice(options):
     """Handles user input for menu selection."""
@@ -26,17 +26,17 @@ def handle_choice(options):
         try:
             choice = int(input("\nSelect an option: ").strip())
             if 1 <= choice <= len(options):
-                slow_print(f"You chose: {options[choice - 1]}", delay=0.02)
+                slow_print(f"You chose: {options[choice - 1]}", delay=0.05)
                 return choice
             else:
-                slow_print("Invalid choice. Please select a valid option.", delay=0.02)
+                slow_print("Invalid choice. Please select a valid option.", delay=0.05)
         except ValueError:
-            slow_print("Invalid input. Please enter a number.", delay=0.02)
+            slow_print("Invalid input. Please enter a number.", delay=0.05)
 
 def choose_class():
     """Allows the player to choose a class before starting the game."""
     clear_screen()
-    slow_print("Choose your class:", delay=0.02)
+    slow_print("Choose your class:", delay=0.05)
     classes = {
         "1": ("Mage", Mage),
         "2": ("Warrior", Warrior),
@@ -44,14 +44,14 @@ def choose_class():
         "4": ("Archer", Archer)
     }
     for key, (cls_name, cls) in classes.items():
-        slow_print(f"{key}. {cls_name}", delay=0.02)
+        slow_print(f"{key}. {cls_name}", delay=0.05)
     
     while True:
         choice = input("Enter the number of your class: ").strip()
         if choice in classes:
             name = input("Enter your character's name: ").strip()
             return classes[choice][1](name)
-        slow_print("Invalid choice. Please select a valid class.", delay=0.02)
+        slow_print("Invalid choice. Please select a valid class.", delay=0.05)
 
 def start_storyline(player):
     """Loads the storyline and starts the game."""

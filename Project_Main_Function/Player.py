@@ -51,10 +51,7 @@ class Player:
         self.experience += amount
         while self.experience >= self.exp_to_level:
             self.experience -= self.exp_to_level
-            prev_level = self.level
             self.level_up()
-            print(f"{self.name} has leveled up to Level {self.level}!") if self.level > prev_level else None
-
     
     def level_up(self):
         self.level += 1

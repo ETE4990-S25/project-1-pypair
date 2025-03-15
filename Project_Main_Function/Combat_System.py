@@ -3,7 +3,7 @@ import json
 import random
 import logging
 from Player import Player, Mage, Warrior, Shadow, Archer
-from Utilities import use_item, display_inventory
+from Inventory import use_item, display_inventory
 
 # Configure logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
@@ -66,7 +66,7 @@ def combat(player, demon, location):
         # Player actions
         if action == "1":  # Attack
             damage = calculate_damage(player, demon)
-            demon_hp = max(0, demon_hp - damage)
+            demon["hp"] -= damage
             print(f"{player.name} dealt {damage} damage to {demon['name']}!")
         elif action == "2":  # Use Item
             item_name = input("Enter the item name to use: ").strip()
@@ -85,7 +85,7 @@ def combat(player, demon, location):
         if demon["hp"] > 0:
             player_defense = getattr(player, "armor", 0)
             demon_damage = max(1, demon["damage"] - (player_defense // 2))
-            player.hp = max(0, player.hp - demon_damage)
+            player.hp -= demon_damage
             print(f"{demon['name']} strikes {player.name} for {demon_damage} damage!")
 
     # Check battle outcome

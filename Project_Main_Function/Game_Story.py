@@ -1,7 +1,7 @@
 import json
 import os
 import textwrap
-from Utilities import slow_print, clear_screen, wrap_text, save_game
+from Ultilities import slow_print, clear_screen, wrap_text
 from Combat_System import combat, spawn_demon
 from Player import Mage, Warrior, Shadow, Archer
 from Inventory import display_inventory, use_item
@@ -22,14 +22,14 @@ def load_story():
 # Storyline progression
 def progress_story(player, node, storyline):
     if node not in storyline:
-        slow_print("Invalid story path.", delay=0.02)
+        slow_print("Invalid story path.", delay=0.05)
         return
     
     event = storyline[node]
 
     # Display story text
     clear_screen()
-    slow_print(wrap_text(event["text"]), delay=0.02)
+    slow_print(wrap_text(event["text"]), delay=0.05)
 
     # Handle event (combat or item)
     if "event" in event:
@@ -38,21 +38,20 @@ def progress_story(player, node, storyline):
             if demon:
                 combat(player, demon, node)
             else:
-                slow_print("No demons available to fight!", delay=0.02)
+                slow_print("No demons available to fight!", delay=0.05)
         elif event["event"] == "item":
             item = event["item"]
-            slow_print(f"You obtained {item}!", delay=0.02)
+            slow_print(f"You obtained {item}!", delay=0.05)
             player.inventory.append(item)
-            save_game(player)
 
     while True:
         slow_print("\nWhat do you do?")
         for key, value in event.get("choices", {}).items():
-            slow_print(f"[{key}] {value}", delay=0.02)
+            slow_print(f"[{key}] {value}", delay=0.05)
 
         # Always allow inventory check and item usage
-        slow_print("[inventory] Check Inventory", delay=0.02)
-        slow_print("[use item] Use an Item", delay=0.02)
+        slow_print("[inventory] Check Inventory", delay=0.05)
+        slow_print("[use item] Use an Item", delay=0.05)
         
         choice = input("Choose an action: ").strip().lower()
 
@@ -67,7 +66,7 @@ def progress_story(player, node, storyline):
             progress_story(player, next_node, storyline)  # Move forward
             return  # Stop asking for input
 
-        slow_print("Invalid choice. Please try again.", delay=0.02)
+        slow_print("Invalid choice. Please try again.", delay=0.05)
                 
 
 
@@ -93,7 +92,7 @@ def start_story(player):
             if "menu_link" in storyline:
                 progress_story(player, "menu_link", storyline)
             else:
-                slow_print("Error: Missing 'menu_link' in storyline data.", delay=0.02)
+                slow_print("Error: Missing 'menu_link' in storyline data.", delay=0.05)
             return
         else:
             slow_print("Invalid choice. Try again.")
