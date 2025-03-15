@@ -49,8 +49,9 @@ def progress_story(player, node, storyline):
         for key, value in event.get("choices", {}).items():
             slow_print(f"[{key}] {value}", delay=0.05)
 
-        # Always allow inventory check
+        # Always allow inventory check and item usage
         slow_print("[inventory] Check Inventory", delay=0.05)
+        slow_print("[use item] Use an Item", delay=0.05)
         
         choice = input("Choose an action: ").strip().lower()
 
@@ -58,8 +59,7 @@ def progress_story(player, node, storyline):
             display_inventory(player.inventory)
             continue  # Loop back to show options again
         elif choice == "use item":
-            item_name = input("Enter the item name to use: ").strip()
-            use_item(player, item_name)
+            use_item(player)
             continue  # Allow using multiple items before choosing an action
         elif choice in event.get("choices", {}):
             next_node = event["choices"][choice]
