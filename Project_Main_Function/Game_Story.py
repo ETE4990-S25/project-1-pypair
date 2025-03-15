@@ -1,7 +1,7 @@
 import json
 import os
 import textwrap
-from Ultilities import slow_print, clear_screen, wrap_text
+from Utilities import slow_print, clear_screen, wrap_text, save_game
 from Combat_System import combat, spawn_demon
 from Player import Mage, Warrior, Shadow, Archer
 from Inventory import display_inventory, use_item
@@ -39,10 +39,12 @@ def progress_story(player, node, storyline):
                 combat(player, demon, node)
             else:
                 slow_print("No demons available to fight!", delay=0.05)
+                save_game(player)
         elif event["event"] == "item":
             item = event["item"]
             slow_print(f"You obtained {item}!", delay=0.05)
             player.inventory.append(item)
+            save_game(player)
 
     while True:
         slow_print("\nWhat do you do?")

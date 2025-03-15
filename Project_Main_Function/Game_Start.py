@@ -1,7 +1,7 @@
 import Game_Story
 import os
 import textwrap
-from Ultilities import slow_print, clear_screen, wrap_text, save_game, load_game
+from Utilities import slow_print, clear_screen, wrap_text, save_game, load_game
 
 from Player import Mage, Warrior, Shadow, Archer
 
