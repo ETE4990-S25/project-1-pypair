@@ -63,7 +63,6 @@ def use_item(player):
             elif "damage" in item or "defense" in item:
                 if meets_requirements(player, item):
                     equip_item(player, item)
-                    logging.info(f"{player.name} equipped {item['name']}!")
                 else:
                     logging.warning(f"{player.name} does not meet the requirements to equip {item['name']}.")
                 return
