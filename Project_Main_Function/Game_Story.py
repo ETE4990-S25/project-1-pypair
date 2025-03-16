@@ -31,10 +31,25 @@ def progress_story(player, node, storyline):
     clear_screen()
     slow_print(wrap_text(event["text"]), delay=0.02)
 
+    
+    # Determine demon tier based on node progression
+    node_list = list(storyline.keys())
+    node_index = node_list.index(node)
+    total_nodes = len(node_list)
+    tier = 1
+
+    # Tier ranges based on node index
+    if node_index >= 10:  # Tier 3 starts at index 10
+        tier = 3
+    elif node_index >= 7:  # Tier 2 starts at index 7
+        tier = 2 
+    elif node_index >= 4:  # Tier 1 starts at index 4
+        tier = 1
+
     # Handle event (combat or item)
     if "event" in event:
         if event["event"] == "combat":
-            demon = spawn_demon("tier_1")
+            demon = spawn_demon(f"tier_{tier}")
             if demon:
                 combat(player, demon, node)
             else:
