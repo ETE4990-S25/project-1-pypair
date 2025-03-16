@@ -63,6 +63,7 @@
     "text": "The Black Marsh is treacherous, filled with lurking horrors.",
     "choices": {
       "explore": "forgotten_tower",
+      "continue": "tamoe_highland",
       "go back": "dark_passage",
       "return to encampment": "stay_encampment"
     }
