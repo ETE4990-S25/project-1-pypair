@@ -40,7 +40,9 @@ def use_item(player):
         return
     
     print("\nSelect an item to use:")
-    display_inventory(player.inventory)
+    for i, item in enumerate(player.inventory, start=1):
+        print(f"{i}. {item['name']}")
+    print("0. Cancel")
     
     try:
         choice = int(input("Enter the item number to use (or 0 to cancel): "))
@@ -90,13 +92,16 @@ def meets_requirements(player, item):
     return True
 
 def equip_item(player, item):
-    """Equips a weapon or armor for the player."""
+    """Equips a weapon or armor item to the player."""
+    # Check if the item is a weapon or armor and equip accordingly
     if "damage" in item:
         player.equipped_weapon = item
-        print(f"{player.name} equipped {item['name']} (Weapon).")
+        logging.info(f"{player.name} equipped {item['name']} as a weapon!")
     elif "defense" in item:
         player.equipped_armor = item
-        print(f"{player.name} equipped {item['name']} (Armor).")
+        logging.info(f"{player.name} equipped {item['name']} as armor!")
+    else:
+        logging.warning(f"{item['name']} cannot be equipped.")
 
 def drop_item(player, item_name):
     """Allows a player to drop an item from their inventory."""
