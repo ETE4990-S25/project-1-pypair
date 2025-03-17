@@ -41,12 +41,16 @@ def spawn_demon(tier):
     return None
 
 # Function to determine loot drops
-def get_loot_drop(location):
-    """Determines item drop rarity based on location."""
-    if location in ["black_marsh", "forgotten_tower", "tamoe_highland", "monastery_gate", "catacombs"]:
-        loot_pool = items_data.get("items", {}).get("intermediate", [])
+def get_loot_drop(location, rarity="common"):
+    """Determines item drop rarity based on location and rarity."""
+    loot_pool = items_data.get("items", {}).get(rarity, [])
+
+    if location in ["black_marsh", "forgotten_tower", "tamoe_highland", "monastery_gate", "catacombs"]: 
+        intermediate_loot = items_data.get("items", {}).get("intermediate", [])
+        loot_pool.extend(intermediate_loot)
     else:
-        loot_pool = items_data.get("items", {}).get("beginner", [])
+        beginner_loot = items_data.get("items", {}).get("beginner", [])
+        loot_pool.extend(beginner_loot)
 
     return random.choice(loot_pool) if loot_pool else None
 
@@ -93,9 +97,12 @@ def combat(player, demon, location):
         print(f"{player.name} defeated {demon['name']}! Gained {demon['exp']} XP!")
         player.gain_experience(demon["exp"])
 
-        # Determine if an item drops
+        # Determine if an item drops and the rarity of item
         if random.random() < 0.5:  # 50% chance to drop an item
-            loot = get_loot_drop(location)
+            rarity_levels = ["common", "uncommon", "rare", "epic", "legendary"]
+            loot_rarity = random.choices(rarity_levels, weights=[50, 30, 15, 4, 1], k=1)[0]
+            loot = get_loot_drop(location, rarity=loot_rarity)
+
             if loot:
                 player.inventory.append(loot)
                 print(f"{player.name} found a {loot['name']} ({loot['rarity']})!")
