@@ -70,8 +70,6 @@ def combat(player, demon, location):
         # Player actions
         if action == "1":  # Attack
             damage = calculate_damage(player, demon)
-            demon["hp"] -= damage
-            print(f"{player.name} dealt {damage} damage to {demon['name']}!")
         
             # Critical hit chance
             critical_chance = player.crit_chance if hasattr(player, "crit_chance") else 0.1
@@ -100,6 +98,13 @@ def combat(player, demon, location):
         if demon["hp"] > 0:
             player_defense = getattr(player, "armor", 0)
             demon_damage = max(1, demon["damage"] - (player_defense // 2))
+
+            # Dodge chance
+            dodge_chance = player.dodge_chance if hasattr(player, "dodge_chance") else 0.05
+            if random.random() < dodge_chance:
+                print(f"{player.name} dodged {demon['name']}'s attack!")
+                continue  # Skip taking damage
+            
             player.hp -= demon_damage
             print(f"{demon['name']} strikes {player.name} for {demon_damage} damage!")
 
