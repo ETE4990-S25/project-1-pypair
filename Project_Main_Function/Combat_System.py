@@ -72,6 +72,17 @@ def combat(player, demon, location):
             damage = calculate_damage(player, demon)
             demon["hp"] -= damage
             print(f"{player.name} dealt {damage} damage to {demon['name']}!")
+        
+            # Critical hit chance
+            critical_chance = player.crit_chance if hasattr(player, "crit_chance") else 0.1
+            if random.random() < critical_chance:
+                damage *= 2  # Double damage for critical hit
+                print(f"Critical hit! {player.name} dealt {damage} damage!")
+            else:
+                print(f"{player.name} dealt {damage} damage to {demon['name']}!")
+            
+            demon["hp"] -= damage
+        
         elif action == "2":  # Use Item
             item_name = input("Enter the item name to use: ").strip()
             use_item(player, item_name)
