@@ -1,7 +1,7 @@
 import Game_Story
 import os
 import textwrap
-from Ultilities import slow_print, clear_screen, wrap_text, save_game, load_game
+from Ultilities import slow_print, clear_screen, wrap_text
 
 from Player import Mage, Warrior, Shadow, Archer
 
@@ -62,19 +62,8 @@ def execute_option(choice):
     """Executes the selected menu option."""
     if choice == 1:
         player = choose_class()
-
         start_storyline(player)
-        
     elif choice == 2:
-        slow_print("Loading game...", delay=0.07)
-        player = load_game()
-        if player:
-            start_storyline(player)
-        else:
-            slow_print("No saved game found. Starting a new game...", delay=0.07)
-            player = choose_class()
-            start_storyline(player)
-    elif choice == 3:
         slow_print("Exiting game...", delay=0.07)
         if 'player' in locals():
             save_game(player)
@@ -82,7 +71,7 @@ def execute_option(choice):
         slow_print("Unexpected error.", delay=0.07)
 
 def main():
-    menu_options = ["Start Game", "Load Game", "Exit Game"]
+    menu_options = ["Start Game", "Exit Game"]
     display_menu(menu_options)
     selected_option = handle_choice(menu_options)
     execute_option(selected_option)
