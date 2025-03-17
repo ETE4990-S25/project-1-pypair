@@ -79,8 +79,8 @@ def apply_item_effect(player, item):
         if "heals" in effect:
             heal_amount = int(effect.split()[1])  # Extract heal value from effect description
             max_hp = getattr(player, "max_hp", player.hp)  # Default max_hp to current hp if not defined
-            player.hp = min(player.hp + heal_amount, max_hp)
-            logging.info(f"{player.name} healed for {heal_amount} HP!")
+            player.hp = max_hp  # Restore HP to max HP
+            logging.info(f"{player.name} restored to full health ({max_hp} HP)!")
 
 
 def meets_requirements(player, item):
