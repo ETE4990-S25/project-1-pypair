@@ -110,7 +110,13 @@
     }
   },
   "ending": {
-    "text": "With Andariel vanquished, peace returns to the land. Your journey continues...",
-    "event": "end"
+    "text": "The final boss appears!",
+    "event": "combat",
+    "enemy": "Andariel",
+    "choices": {
+      "return to encampment": "stay_encampment",
+      "Restart": "start",
+      "go back": "catacombs"
+    }
   }
 }

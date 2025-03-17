@@ -105,15 +105,13 @@ def combat(player, demon, location):
 
 # Function to get primary stat for damage calculations
 def get_primary_stat(player):
-    if isinstance(player, Mage):
-        return player.intelligence
-    elif isinstance(player, Warrior):
-        return player.strength
-    elif isinstance(player, Shadow):
-        return (player.dexterity + player.strength + player.intelligence) // 3
-    elif isinstance(player, Archer):
-        return player.dexterity
-
+    primary_stats = {
+        Mage: lambda p: p.intelligence,
+        Warrior: lambda p: p.strength,
+        Shadow: lambda p: (p.dexterity + p.strength + p.intelligence) // 3,
+        Archer: lambda p: p.dexterity
+    }
+    return primary_stats.get(type(player), lambda p: 0)(player)
 
 # Function to calculate player attack damage
 def calculate_damage(player, demon):

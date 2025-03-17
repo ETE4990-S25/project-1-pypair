@@ -1,4 +1,5 @@
 import json
+import logging
 import os
 import textwrap
 from Ultilities import slow_print, clear_screen, wrap_text
@@ -89,25 +90,44 @@ def progress_story(player, node, storyline):
 def start_story(player):
     """Starts the storyline with the provided player instance."""
     storyline = load_story()
-    
-    while True:  # Allow interaction before starting
-        slow_print("\nYou are in town. What would you like to do?")
-        slow_print("[start] Begin your adventure")
-        slow_print("[inventory] Check Inventory")
-        slow_print("[use item] Use an Item")
-        
-        choice = input("Choose an action: ").strip().lower()
 
-        if choice == "inventory":
-            display_inventory(player.inventory)
-        elif choice == "use item":
-            item_name = input("Enter the item name to use: ").strip()
-            use_item(player, item_name)
-        elif choice == "start":
-            if "menu_link" in storyline:
-                progress_story(player, "menu_link", storyline)
-            else:
-                slow_print("Error: Missing 'menu_link' in storyline data.", delay=0.02)
-            return
+    def handle_inventory():
+        display_inventory(player.inventory)
+
+    def handle_exit():
+        slow_print("Exiting game...", delay=0.02)
+        return True  # Signal to exit the loop
+
+    def handle_use_item():
+        item_name = input("Enter the item name to use: ").strip()
+        use_item(player, item_name)
+
+    def handle_start():
+        if "menu_link" in storyline:
+            progress_story(player, "menu_link", storyline)
         else:
-            slow_print("Invalid choice. Try again.")
+            logging.error("Storyline not found.")
+        return True  # Signal to exit the loop
+
+    def handle_invalid():
+        slow_print("Invalid choice. Try again.", delay=0.02)
+
+    # Map user choices to corresponding functions
+    actions = {
+        "inventory": handle_inventory,
+        "exit": handle_exit,
+        "use item": handle_use_item,
+        "start": handle_start,
+    }
+
+    while True:  # Allow interaction before starting
+        slow_print("\nYou are in town. What would you like to do?", delay=0.02)
+        slow_print("[start] Begin your adventure", delay=0.02)
+        slow_print("[inventory] Check Inventory", delay=0.02)
+        slow_print("[use item] Use an Item", delay=0.02)
+        slow_print("[exit] Exit the game", delay=0.02)
+
+        choice = input("Choose an action: ").strip().lower()
+        action = actions.get(choice, handle_invalid)
+        if action() is True:  # Exit the loop if the action signals to do so
+            break

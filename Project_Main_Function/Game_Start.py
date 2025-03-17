@@ -64,11 +64,9 @@ def execute_option(choice):
         player = choose_class()
         start_storyline(player)
     elif choice == 2:
-        slow_print("Exiting game...", delay=0.07)
-        if 'player' in locals():
-            save_game(player)
+        slow_print("Exiting game...", delay=0.02)
     else:
-        slow_print("Unexpected error.", delay=0.07)
+        slow_print("Unexpected error.", delay=0.02)
 
 def main():
     menu_options = ["Start Game", "Exit Game"]
