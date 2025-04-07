@@ -137,7 +137,7 @@
               "name": "Sword of Eternal Flame",
               "type": "sword",
               "rarity": "legendary",
-              "damage": 20.0,
+              "damage": 20,
               "requirement": {"strength": 20, "level": 10},
               "description": "A blade imbued with the essence of fire, capable of scorching enemies with each strike."
           },
