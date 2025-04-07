@@ -57,6 +57,9 @@ def use_item(player):
             if "effect" in item:
                 apply_item_effect(player, item)
                 player.inventory.pop(choice - 1)  # Remove after use
+                confirm = input(f"Use {item['name']}? (y/n): ").strip().lower()
+                if confirm == 'y':
+                    player.inventory.pop(choice - 1)  # Remove item from inventory
                 logging.info(f"{player.name} used {item['name']}!")
                 return
             # Check if it's equippable (weapon or armor)
@@ -64,6 +67,7 @@ def use_item(player):
                 if meets_requirements(player, item):
                     equip_item(player, item)
                 else:
+                    print(f"{player.name} does not meet the requirements to equip {item['name']}.")
                     logging.warning(f"{player.name} does not meet the requirements to equip {item['name']}.")
                 return
         else:
@@ -76,7 +80,7 @@ def apply_item_effect(player, item):
     """Applies the effect of a consumable item."""
     if "effect" in item:
         effect = item["effect"]
-        if "heals" in effect:
+        if "heals" in effect.lower():
             heal_amount = int(effect.split()[1])  # Extract heal value from effect description
             max_hp = getattr(player, "max_hp", player.hp)  # Default max_hp to current hp if not defined
             player.hp = max_hp  # Restore HP to max HP
@@ -102,7 +106,7 @@ def equip_item(player, item):
     else:
         logging.warning(f"{item['name']} cannot be equipped.")
 
-def drop_item(player, item_name):
+def drop_item(player, item_name:str):
     """Allows a player to drop an item from their inventory."""
     for item in player.inventory:
         if item["name"].lower() == item_name.lower():
