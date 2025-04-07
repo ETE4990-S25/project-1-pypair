@@ -14,10 +14,10 @@ def load_story():
         with open(storyline_path, "r") as file:
             return json.load(file)
     except FileNotFoundError:
-        print("Error: Storyline file not found.")
+        logging.error("Error: Storyline file not found.")
         return {}
     except json.JSONDecodeError:
-        print("Error: Invalid JSON format in storyline.")
+        logging.error("Error: Invalid JSON format in storyline.")
         return {}
 
 # Storyline progression
