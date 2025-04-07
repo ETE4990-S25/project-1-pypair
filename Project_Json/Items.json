@@ -1,0 +1,186 @@
+{
+  "items": {
+      "beginner": [
+          {
+              "name": "Wooden Sword",
+              "type": "sword",
+              "rarity": "common",
+              "damage": 6,
+              "requirement": {"strength": 5},
+              "description": "A simple but sturdy wooden sword."
+          },
+          {
+              "name": "Short Dagger",
+              "type": "dagger",
+              "rarity": "common",
+              "damage": 4,
+              "requirement": {"dexterity": 5},
+              "description": "A rusty short dagger."
+          },
+          {
+              "name": "Short Bow",
+              "type": "bow",
+              "rarity": "common",
+              "damage": 7,
+              "requirement": {"dexterity": 6},
+              "description": "A simple but sturdy wooden bow."
+          },
+          {
+              "name": "Apprentice's Staff",
+              "type": "staff",
+              "rarity": "common",
+              "damage": 10,
+              "requirement": {"intelligence": 7},
+              "description": "A simple wooden staff used by novice spellcasters."
+          },
+          {
+              "name": "Leather Armor",
+              "type": "armor",
+              "rarity": "common",
+              "defense": 10,
+              "requirement": {"strength": 4},
+              "description": "Basic leather armor offering minimal protection."
+          },
+          {
+              "name": "Wooden Shield",
+              "type": "shield",
+              "rarity": "common",
+              "defense": 5,
+              "requirement": {"strength": 4},
+              "description": "A lightweight shield made of wood."
+          },
+          {
+              "name": "Copper Ring",
+              "type": "ring",
+              "rarity": "common",
+              "effect": "Slightly increases resistance to damage.",
+              "requirement": {"level": 1},
+              "description": "A simple copper ring with faint magical properties."
+          },
+          {
+              "name": "Minor Health Potion",
+              "type": "potion",
+              "rarity": "common",
+              "effect": "heals 20 HP",
+              "requirement": {},
+              "description": "A small vial that restores some health."
+          },
+          {
+              "name": "Minor Mana Potion",
+              "type": "potion",
+              "rarity": "common",
+              "effect": "restores 15 mana",
+              "requirement": {},
+              "description": "A blue liquid that replenishes a small amount of mana."
+          }
+      ],
+      "intermediate": [
+          {
+              "name": "Steel Broadsword",
+              "type": "sword",
+              "rarity": "uncommon",
+              "damage": 8,
+              "requirement": {"strength": 10},
+              "description": "A well-forged steel broadsword, balanced and deadly."
+          },
+          {
+              "name": "Chainmail Armor",
+              "type": "armor",
+              "rarity": "uncommon",
+              "defense": 25,
+              "requirement": {"strength": 8},
+              "description": "A suit of chainmail offering good protection without limiting mobility."
+          },
+          {
+              "name": "Kite Shield",
+              "type": "shield",
+              "rarity": "uncommon",
+              "defense": 15,
+              "requirement": {"strength": 9},
+              "description": "A strong, metal-reinforced shield for capable warriors."
+          },
+          {
+              "name": "Silver Amulet of Vitality",
+              "type": "amulet",
+              "rarity": "uncommon",
+              "effect": "Increases stamina regeneration.",
+              "requirement": {"level": 5},
+              "description": "A finely crafted amulet that grants endurance to the wearer."
+          },
+          {
+              "name": "Boots of Swiftness",
+              "type": "boots",
+              "rarity": "uncommon",
+              "effect": "Increases movement speed.",
+              "requirement": {"dexterity": 12},
+              "description": "Lightweight boots infused with wind magic, allowing the wearer to move with incredible speed."
+          },
+          {
+              "name": "Healing Potion",
+              "type": "potion",
+              "rarity": "uncommon",
+              "effect": "heals 50 HP",
+              "requirement": {},
+              "description": "A potent red elixir that restores health."
+          },
+          {
+              "name": "Mana Potion",
+              "type": "potion",
+              "rarity": "uncommon",
+              "effect": "restores 40 mana",
+              "requirement": {},
+              "description": "A blue liquid that replenishes a moderate amount of mana."
+          }
+      ],
+      "advanced": [
+          {
+              "name": "Sword of Eternal Flame",
+              "type": "sword",
+              "rarity": "legendary",
+              "damage": 20,
+              "requirement": {"strength": 20, "level": 10},
+              "description": "A blade imbued with the essence of fire, capable of scorching enemies with each strike."
+          },
+          {
+              "name": "Aegis of the Moon",
+              "type": "shield",
+              "rarity": "epic",
+              "defense": 50,
+              "requirement": {"strength": 15, "level": 8},
+              "description": "A shield blessed by lunar priests, providing unmatched protection against dark magic."
+          },
+          {
+              "name": "Ring of the Phantom",
+              "type": "ring",
+              "rarity": "legendary",
+              "effect": "Grants temporary invisibility.",
+              "requirement": {"intelligence": 15, "level": 10},
+              "description": "A mystical ring that allows the wearer to vanish from sight."
+          },
+          {
+              "name": "Elixir of Fortitude",
+              "type": "potion",
+              "rarity": "epic",
+              "effect": "Temporarily increases max HP by 30 for 5 minutes",
+              "requirement": {},
+              "description": "A rare elixir that grants temporary resilience in battle."
+          },
+          {
+              "name": "Greater Health Potion",
+              "type": "potion",
+              "rarity": "epic",
+              "effect": "heals 100 HP",
+              "requirement": {},
+              "description": "A powerful healing elixir used by legendary warriors."
+          },
+          {
+              "name": "Greater Mana Potion",
+              "type": "potion",
+              "rarity": "epic",
+              "effect": "restores 100 mana",
+              "requirement": {},
+              "description": "An ancient brew that restores a significant amount of mana."
+          }
+      ]
+  }
+}
