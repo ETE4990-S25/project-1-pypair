@@ -41,8 +41,8 @@ class Player:
     def equip_weapon(self, weapon):
         if self.can_equip(weapon):
             self.equipped_weapon = weapon
-            return f"{self.name} equipped {weapon['name']}!"
-        return f"{self.name} cannot equip {weapon['name']}!"
+            return f"{self.name} equipped {weapon['name']} ({weapon['type']})!"
+        return f"{self.name} cannot equip {weapon['name']} ({weapon['type']})!"
     
     def can_equip(self, weapon):
         return weapon["type"] in self.ALLOWED_WEAPONS.get(self.__class__.__name__, [])

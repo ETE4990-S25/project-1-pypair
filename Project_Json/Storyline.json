@@ -2,20 +2,23 @@
   "menu_link": {
     "text": "You have wandered far, stranger. You arrive at the Rogue Encampment, the last bastion of safety in a land consumed by darkness. The corrupted wilderness stretches ahead, filled with horrors unseen. Akara, the encampment's leader, greets you with grave news: the demonic forces of the Burning Hells have begun their march. If you are to survive, you must prove your worth...",
     "choices": {
-      "begin": "start"
+      "begin": "start",
+      "exit": "exit"
     }
   },
   "start": {
     "text": "You awaken in the Rogue Encampment, a refuge for adventurers. Akara greets you with a task.",
     "choices": {
       "accept quest": "blood_moor",
-      "refuse": "stay_encampment"
+      "refuse": "stay_encampment",
+      "exit": "exit"
     }
   },
   "stay_encampment": {
     "text": "You decide to rest at the encampment, but danger looms outside...",
     "choices": {
-      "venture out": "blood_moor"
+      "venture out": "blood_moor",
+      "exit": "exit"
     }
   },
   "blood_moor": {
@@ -25,7 +28,8 @@
     "choices": {
       "continue": "cold_plains",
       "stay and fight": "blood_moor",
-      "return to encampment": "stay_encampment"
+      "return to encampment": "stay_encampment",
+      "exit": "exit"
     }
   },
   "cold_plains": {
@@ -36,7 +40,8 @@
       "continue": "stony_field",
       "stay and fight": "cold_plains",
       "go back": "blood_moor",
-      "return to encampment": "stay_encampment"
+      "return to encampment": "stay_encampment",
+      "exit": "exit"
     }
   },
   "stony_field": {
@@ -45,7 +50,8 @@
       "investigate": "dark_passage",
       "ignore": "black_marsh",
       "go back": "cold_plains",
-      "return to encampment": "stay_encampment"
+      "return to encampment": "stay_encampment",
+      "exit": "exit"
     }
   },
   "dark_passage": {
@@ -56,7 +62,8 @@
       "continue": "black_marsh",
       "stay and fight": "dark_passage",
       "go back": "stony_field",
-      "return to encampment": "stay_encampment"
+      "return to encampment": "stay_encampment",
+      "exit": "exit"
     }
   },
   "black_marsh": {
@@ -65,7 +72,8 @@
       "explore": "forgotten_tower",
       "continue": "tamoe_highland",
       "go back": "dark_passage",
-      "return to encampment": "stay_encampment"
+      "return to encampment": "stay_encampment",
+      "exit": "exit"
     }
   },
   "forgotten_tower": {
@@ -76,7 +84,8 @@
       "defeat her": "tamoe_highland",
       "stay and fight": "forgotten_tower",
       "go back": "black_marsh",
-      "return to encampment": "stay_encampment"
+      "return to encampment": "stay_encampment",
+      "exit": "exit"
     }
   },
   "tamoe_highland": {
@@ -84,7 +93,8 @@
     "choices": {
       "proceed": "monastery_gate",
       "go back": "forgotten_tower",
-      "return to encampment": "stay_encampment"
+      "return to encampment": "stay_encampment",
+      "exit": "exit"
     }
   },
   "monastery_gate": {
@@ -95,7 +105,8 @@
       "enter": "catacombs",
       "stay and fight": "monastery_gate",
       "go back": "tamoe_highland",
-      "return to encampment": "stay_encampment"
+      "return to encampment": "stay_encampment",
+      "exit": "exit"
     }
   },
   "catacombs": {
@@ -106,7 +117,8 @@
       "final battle": "ending",
       "stay and fight": "catacombs",
       "go back": "monastery_gate",
-      "return to encampment": "stay_encampment"
+      "return to encampment": "stay_encampment",
+      "exit": "exit"
     }
   },
   "ending": {
@@ -116,7 +128,8 @@
     "choices": {
       "return to encampment": "stay_encampment",
       "Restart": "start",
-      "go back": "catacombs"
+      "go back": "catacombs",
+      "exit": "exit"
     }
   }
 }
