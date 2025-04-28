@@ -93,6 +93,8 @@ def combat(player, demon, location):
             else:
                 print(f"{player.name} successfully escapes!")
             return
+        else:
+            print("invalid response")
 
         # Enemy's turn
         if demon["hp"] > 0:
