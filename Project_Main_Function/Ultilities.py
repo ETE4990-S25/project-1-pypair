@@ -16,14 +16,15 @@ logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(
 items_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), "Project_Json", "Items.json")
 save_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), "Project_Json", "save_data.json")
 
-def slow_print(text, delay=0.05):
+def slow_print(text, delay = 0.05, enabled = True):
     """Prints text one character at a time with a delay for a typewriter effect."""
-    for char in text:
-        sys.stdout.write(char)
-        sys.stdout.flush()
-        time.sleep(delay)
-    print()  # Move to a new line after printing the text
-
+    if enabled:
+        for char in text:
+            print(char, end='', flush = True)
+            time.sleep(delay)
+            print()
+    else:
+        print(text)
 
 def clear_screen():
     """Clears the terminal screen for better visibility."""
